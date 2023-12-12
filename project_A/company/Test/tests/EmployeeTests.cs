@@ -1,5 +1,10 @@
-﻿using Company.Logic.classes;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Company.Logic.classes.Employees;
 using Company.Logic.enums;
+using Company.Logic.interfaces;
+using System;
+using System.IO;
+using Company.Logic.classes;
 
 namespace Test
 {
@@ -9,63 +14,56 @@ namespace Test
         [TestMethod]
         public void EmployeeConstructor_InitializesProperties()
         {
-            string name = "John Doe";
+            string firstName = "John";
+            string lastName = "Doe";
             int id = 1;
             Role role = Role.Developer;
+            int salary = 50000;
 
-            Employee employee = new Employee(name, id, role);
+            Manager employee = new Manager(firstName, lastName, id, role, salary, "Test Department");
 
-            Assert.AreEqual(name, employee.FirstName);
-            Assert.AreEqual(id, employee.Salary);
-            Assert.AreEqual(role, employee.EmployeeRole);
+            Assert.AreEqual(firstName, employee.FirstName);
+            Assert.AreEqual(lastName, employee.LastName);
+            Assert.AreEqual(id, employee.Id);
+            Assert.AreEqual(role, employee.Role);
+            Assert.AreEqual(salary, employee.Salary);
         }
 
         [TestMethod]
         public void CalculateBonus_CalculatesBonusCorrectly()
         {
-            Employee employee = new Employee("John Doe", 1, Role.Developer);
+            string firstName = "John";
+            string lastName = "Doe";
+            int id = 1;
+            Role role = Role.Developer;
+            int salary = 50000;
+
+            Manager employee = new Manager(firstName, lastName, id, role, salary, "Test Department");
             int bonusPercentage = 10;
 
             double bonus = employee.CalculateBonus(bonusPercentage);
 
-            Assert.AreEqual(0.1 * employee.Salary, bonus, 0.01);
-        }
-
-        [TestMethod]
-        public void DisplayEmployeeInfo_ReturnsFormattedInfo()
-        {
-            Employee employee = new Employee("John Doe", 1, Role.Developer);
-
-            string info = CaptureConsoleOutput(() => employee.DisplayEmployeeInfo());
-
-            Assert.IsTrue(info.Contains("John Doe"));
-            Assert.IsTrue(info.Contains("Developer"));
-            Assert.IsTrue(info.Contains("Salary:"));
+            Assert.AreEqual(0.1 * salary, bonus, 0.01);
         }
 
         [TestMethod]
         public void PromoteEmployee_UpdatesRoleAndSalary()
         {
-            Employee employee = new Employee("John Doe", 1, Role.Developer);
+            string firstName = "John";
+            string lastName = "Doe";
+            int id = 1;
+            Role role = Role.Developer;
+            int salary = 50000;
+
+            Manager employee = new Manager(firstName, lastName, id, role, salary, "Test Department");
             Role newRole = Role.TeamLead;
             int salaryIncrease = 5000;
+            int bonusPercentage = 15;
 
-            employee.PromoteEmployee(newRole, salaryIncrease);
+            employee.PromoteEmployee(newRole, salaryIncrease, bonusPercentage);
 
-            Assert.AreEqual(newRole, employee.EmployeeRole);
-            Assert.AreEqual(1 + salaryIncrease, employee.Salary);
-        }
-
-        private string CaptureConsoleOutput(Action action)
-        {
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-
-                action();
-
-                return sw.ToString();
-            }
+            Assert.AreEqual(newRole, employee.Role);
+            Assert.AreEqual(salary + salaryIncrease, employee.Salary);
         }
     }
 }

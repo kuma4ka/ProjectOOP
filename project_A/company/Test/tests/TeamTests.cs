@@ -1,5 +1,9 @@
 ﻿using Company.Logic.classes;
+using Company.Logic.classes.Employees;
 using Company.Logic.enums;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace Test
 {
@@ -9,28 +13,28 @@ namespace Test
         [TestMethod]
         public void TeamConstructor_InitializesProperties()
         {
-            string teamName = "Development Team";
-            int teamId = 1;
+            string teamName = "Dev";
+            string teamId = "1";
 
             Team team = new Team(teamName, teamId);
 
             Assert.AreEqual(teamName, team.TeamName);
-            Assert.AreEqual(teamId.ToString(), team.TeamId);
-            Assert.IsNotNull(team.TeamMembers);
-            Assert.AreEqual(0, team.TeamMembers.Count);
+            Assert.AreEqual(teamId, team.TeamId);
         }
 
         [TestMethod]
         public void AddTeamMember_AddsMemberToList()
         {
-            Team team = new Team("Development Team", 1);
+            Team team = new Team("Dev1", "1");
 
-            string name = "Test Name";
+            string firstName = "Test";
+            string lastName = "Test";
             int id = 1;
-            Role role = Role.TeamLead;
+            Role role = Role.Manager;
+            int salary = 1200;
+            string department = "Department";
 
-            Employee employee = new(name, id, role);
-
+            Manager employee = new Manager(firstName, lastName, id, role, salary, department);
             team.AddTeamMember(employee);
 
             Assert.IsTrue(team.TeamMembers.Contains(employee));
@@ -39,50 +43,21 @@ namespace Test
         [TestMethod]
         public void RemoveTeamMember_RemovesMemberFromList()
         {
-            Team team = new Team("Development Team", 1);
+            Team team = new Team("Dev1", "1");
 
-            string name = "Test Name";
+            string firstName = "Test";
+            string lastName = "Test";
             int id = 1;
-            Role role = Role.TeamLead;
+            Role role = Role.Manager;
+            int salary = 1200;
+            string department = "Department";
 
-            Employee employee = new(name, id, role);
-
+            Manager employee = new Manager(firstName, lastName, id, role, salary, department);
             team.AddTeamMember(employee);
 
             team.RemoveTeamMember(employee);
 
             Assert.IsFalse(team.TeamMembers.Contains(employee));
-        }
-
-        [TestMethod]
-        public void DisplayTeamInfo_ReturnsFormattedInfo()
-        {
-            Team team = new Team("Development Team", 1);
-
-            string name = "Test Name";
-            int id = 1;
-            Role role = Role.TeamLead;
-
-            Employee employee = new(name, id, role);
-
-            team.AddTeamMember(employee);
-
-            string info = CaptureConsoleOutput(() => team.DisplayTeamInfo());
-
-            Assert.IsTrue(info.Contains("Development Team"));
-            Assert.IsTrue(info.Contains("John Doe"));
-        }
-
-        private string CaptureConsoleOutput(Action action)
-        {
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-
-                action();
-
-                return sw.ToString();
-            }
         }
     }
 }

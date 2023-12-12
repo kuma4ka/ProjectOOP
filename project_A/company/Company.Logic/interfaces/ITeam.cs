@@ -1,4 +1,5 @@
 ﻿using Company.Logic.classes;
+using Company.Logic.classes.Employees;
 
 namespace Company.Logic.interfaces
 {
@@ -14,5 +15,7 @@ namespace Company.Logic.interfaces
         void RemoveTeamMember(Employee employee);
 
         void DisplayTeamInfo();
+
+        void DisplayEmployeeInfo(Employee employee);
     }
 }

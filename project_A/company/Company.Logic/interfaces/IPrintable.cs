@@ -8,8 +8,8 @@ namespace Company.Logic.interfaces
 {
     public interface IPrintable
     {
-        void PrintToConsole();
+        public void PrintToConsole();
 
-        void PrintToFile(string filePath);
+        void PrintToFileTXT(string filePath);
     }
 }

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Company.Logic.classes.Employees.Developer">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EYECAHAAAACAEAEAEAFAAQAAEAAAAAAAAAABAAQAABo=</HashCode>
+      <FileName>classes\Employees\Developer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Company.Logic.classes.Employees.Manager">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAECAHAAAACAEAEAEAFAAQAAEAAAAAAAAAABAAQACBo=</HashCode>
+      <FileName>classes\Employees\Manager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Company.Logic.classes.Department">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACkBAAAAAAAAAAAAiAAAACAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>classes\Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Company.Logic.classes.Employee" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAHAAAAAAEAEAEAAAAQAAAAAAAAAAAAAAAAAAABg=</HashCode>
+      <FileName>classes\Employee.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Company.Logic.classes.PrintableClass" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Printable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IPrintable" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Company.Logic.classes.Team" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAgAAAAEAAAAAAAIAAEAAHIAAAAEAAgAACAQAAAAI=</HashCode>
+      <FileName>classes\Team.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ITeam" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Company.Logic.interfaces.IPrintable">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>interfaces\IPrintable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Company.Logic.interfaces.ITeam">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAEAAAAAAAAAAAAADAAAAAEAAgAAAAAAAAAI=</HashCode>
+      <FileName>interfaces\ITeam.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Company.Logic.enums.Role">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAEAAAABAAIAAAAAAAAAIAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>enums\Role.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

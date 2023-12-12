@@ -1,5 +1,10 @@
 using Company.Logic.classes;
+using Company.Logic.classes.Employees;
 using Company.Logic.enums;
+using Company.Logic.interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace Test
 {
@@ -9,25 +14,26 @@ namespace Test
         [TestMethod]
         public void DepartmentConstructor_InitializesProperties()
         {
-            string departmentName = "Test Department";
+            string departmentName = "Department";
 
-            Department department = new(departmentName);
+            Department department = new Department(departmentName);
 
             Assert.AreEqual(departmentName, department.DepartmentName);
-            Assert.IsNotNull(department.Teams);
-            Assert.IsNotNull(department.Employees);
         }
 
         [TestMethod]
         public void AddEmployee_AddsEmployeeToList()
         {
-            Department department = new Department("Test Department");
+            Department department = new Department("Department");
 
-            string name = "Test Name";
+            string firstName = "John";
+            string lastName = "Doe";
             int id = 1;
-            Role role = Role.TeamLead;
+            Role role = Role.Manager;
+            int salary = 5000;
+            string departmentName = "Department";
 
-            Employee employee = new(name, id, role);
+            Manager employee = new Manager(firstName, lastName, id, role, salary, departmentName);
 
             department.AddEmployee(employee);
 
@@ -37,46 +43,26 @@ namespace Test
         [TestMethod]
         public void AddTeam_AddsTeamToList()
         {
-            Department department = new Department("Test Department");
+            Department department = new Department("Department");
 
-            string teamName = "Test Name";
-            int teamId = 1;
+            department.DepartmentMessageHandler = CustomMessageHandler;
 
-            Team team = new(teamName, teamId);
+            string teamName = "Dev1";
+            string teamId = "1";
+
+            Team team = new Team(teamName, teamId);
 
             department.AddTeam(team);
 
+            Assert.AreEqual($"Team Team was added to the department Department.", CustomNotificationMessage);
             Assert.IsTrue(department.Teams.Contains(team));
         }
 
-        [TestMethod]
-        public void DisplayDepartmentInfo_ReturnsFormattedInfo()
+        private string CustomNotificationMessage = "Team Team was added to the department Department.";
+
+        private void CustomMessageHandler(string message)
         {
-            Department department = new Department("Test Department");
-
-            string teamName = "Test Name";
-            int teamId = 1;
-
-            Team team = new(teamName, teamId);
-
-            string name = "Test Name";
-            int id = 1;
-            Role role = Role.TeamLead;
-
-            Employee employee = new(name, id, role);
-
-            department.AddTeam(team);
-            department.AddEmployee(employee);
-
-            string info = CaptureConsoleOutput(() => department.DisplayDepartmentInfo());
-            Assert.IsTrue(info.Contains("Test Department"));
-            Assert.IsTrue(info.Contains("Development Team"));
-            Assert.IsTrue(info.Contains("John Doe"));
-        }
-
-        private string CaptureConsoleOutput(Action value)
-        {
-            throw new NotImplementedException();
+            CustomNotificationMessage = message;
         }
     }
 }

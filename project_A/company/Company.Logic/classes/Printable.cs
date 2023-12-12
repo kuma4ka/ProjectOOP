@@ -10,14 +10,33 @@ namespace Company.Logic.classes
 {
     internal class PrintableClass : IPrintable
     {
-        public void PrintToConsole()
+        public IPrintable IPrintable
         {
-            throw new NotImplementedException();
+            get => default;
+            set
+            {
+            }
         }
 
-        public void PrintToFile(string filePath)
+        public void PrintToConsole()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Printing to console...");
+        }
+
+        public void PrintToFileTXT(string filePath)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("Printing to text file...");
+                }
+                Console.WriteLine($"Printed to file: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while printing to file: {ex.Message}");
+            }
         }
     }
 }

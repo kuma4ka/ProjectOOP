@@ -1,33 +1,31 @@
 ﻿using Company.Logic.enums;
 using Company.Logic.interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Company.Logic.classes
 {
-    public class Employee : IEmployee
+    public abstract class Employee : ICloneable, IPrintable
     {
-        public Employee(string name, int id, Role role)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract string FirstName { get; set; }
+        public abstract string LastName { get; set; }
+        public abstract int Id { get; set; }
+        public abstract Role Role { get; set; }
+        public abstract int Salary { get; set; }
 
-        public string FirstName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string LastName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Salary { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Role EmployeeRole { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public abstract double CalculateBonus(int bonusPercentage);
 
-        public double CalculateBonus(int bonusPercentage)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DisplayInfo();
 
-        public void DisplayEmployeeInfo()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract object Clone();
 
-        public void PromoteEmployee(Role newRole, int salaryIncrease)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void PromoteEmployee(Role newRole, int salaryIncrease, int bonusPercentage);
+
+        public abstract void PrintToConsole();
+
+        public abstract void PrintToFileTXT(string filePath);
     }
 }
